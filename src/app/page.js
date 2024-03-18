@@ -30,7 +30,6 @@ export default function Home() {
 
       <div className={styles.center}>
         <Image
-
           src="/nuntius-logo.png"
           alt="Nuntius Logo"
           width={479}
