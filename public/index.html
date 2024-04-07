@@ -21,54 +21,41 @@
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const createSessionBtn = document.getElementById("createSessionBtn");
-            const joinSessionBtn = document.getElementById("joinSessionBtn");
-            const sendMessageBtn = document.getElementById("sendMessageBtn");
-
             createSessionBtn.addEventListener("click", createSession);
-            joinSessionBtn.addEventListener("click", joinSession);
-            sendMessageBtn.addEventListener("click", sendMessage);
         });
 
         function createSession() {
             const nickname = prompt("Enter your nickname:");
             if (nickname === null) return;
 
-            // Send request to server to create session
-            // You'll implement this part later using AJAX or Fetch API
-        }
+            const userData = {
+                userID: "exampleUserID",
+                avatar: 1
+            };
 
-        function joinSession() {
-            const sessionID = prompt("Enter session ID:");
-            if (sessionID === null) return;
-            const nickname = prompt("Enter your nickname:");
-            if (nickname === null) return;
-
-            // Send request to server to join session
-            // You'll implement this part later using AJAX or Fetch API
-        }
-
-        function sendMessage() {
-            const messageInput = document.getElementById("messageInput");
-            const message = messageInput.value.trim();
-            if (message === "") return;
-
-            // Send message to server
-            // You'll implement this part later using AJAX or Fetch API
-
-            // Display message locally
-            displayMessage("You", message);
-
-            // Clear input field after sending message
-            messageInput.value = "";
-        }
-
-        function displayMessage(sender, message) {
-            const chatMessages = document.getElementById("chatMessages");
-            const messageDiv = document.createElement("div");
-            messageDiv.textContent = `${sender}: ${message}`;
-            chatMessages.appendChild(messageDiv);
+            fetch('http://localhost:3000/create-session', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(userData),
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Session created', data);
+                    window.history.pushState({}, '', `/${data.sessionId}`);
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
         }
     </script>
+
 </body>
 
 </html>

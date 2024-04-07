@@ -1,25 +1,5 @@
 const mongoose = require("mongoose");
 
-const messageSchema = new mongoose.Schema({
-    content: {
-        type: String,
-        required: true
-    },
-    type: {
-        type: String,
-        enum: ['text', 'video', 'audio'],
-        required: true
-    },
-    timestamp: {
-        type: Date,
-        default: Date.now
-    }
-});
-
-const sessionMessages = mongoose.model("Messages", messageSchema);
-sessionMessages.createCollection().then(console.log("Collection successfully created."))
-
-
 const sessionSchema = new mongoose.Schema({
     userID: {
         type: String,
@@ -35,7 +15,21 @@ const sessionSchema = new mongoose.Schema({
         min: 0,
         max: 9
     },
-    messages: [messageSchema],
+    messages: [{
+        content: {
+            type: String,
+            required: true
+        },
+        type: {
+            type: String,
+            enum: ['text', 'video', 'audio'],
+            required: true
+        },
+        timestamp: {
+            type: Date,
+            default: Date.now
+        }
+    }],
     createdAt: {
         type: Date,
         default: Date.now

@@ -5,15 +5,20 @@ const Session = require("../models/session.js");
 // Create session route
 router.post("/create-session", async (req, res) => {
     try {
-        const { userID, avatar } = req.body;
-        const newSession = new Session({ userID, avatar });
+        const { userID, nickname, avatar } = req.body;
+        const newSession = new Session({
+            userID,
+            nickname, // This could be omitted if it's not required at creation
+            avatar,
+        });
         await newSession.save();
-        res.status(201).json(newSession);
+        res.status(201).json({ sessionId: newSession._id });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: "Internal server error" });
     }
 });
+
 
 // Join session route
 router.post("/join-session", async (req, res) => {

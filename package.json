@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
   "name": "nuntiustesting",
   "version": "1.0.0",
   "description": "",
@@ -9,21 +8,8 @@
     "start": "node server.js"
   },
   "author": "",
-  "license": "MIT"
-=======
-  "name": "nuntius",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
+  "license": "MIT",
   "dependencies": {
-    "react": "^18",
-    "react-dom": "^18",
-    "next": "14.1.0"
+    "cors": "^2.8.5"
   }
->>>>>>> 4ac717633b60b3a4c1d539f974196cfcb9109a96
 }
