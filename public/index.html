@@ -24,12 +24,19 @@
             createSessionBtn.addEventListener("click", createSession);
         });
 
+        function generateRandomUserID() {
+            return Math.floor(Math.random() * 900000000) + 100000000;
+        }
+
         function createSession() {
-            const nickname = prompt("Enter your nickname:");
+            const nickname = prompt("Enter your nickname: (optional)");
             if (nickname === null) return;
 
+            //userID = generateRandomUserID();
+
             const userData = {
-                userID: nickname,
+                userID: generateRandomUserID(),
+                nickname: nickname,
                 avatar: 1
             };
 
