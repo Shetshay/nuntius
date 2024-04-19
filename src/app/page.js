@@ -1,7 +1,30 @@
+'use client'
 import Image from "next/image";
-import styles from "./page.module.css";
+import styles from "@/css/page.module.css";
+import { useRouter } from 'next/navigation';  
 
 export default function Home() {
+  const router = useRouter();
+
+  async function createRoom() {
+    try {
+      const response = await fetch("/api/create-chat", {
+        method: "POST",
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      router.push(`/chat-room/${data.roomId}`);
+    } catch (error) {
+      console.error("Failed to create chat room:", error);
+      // Handle errors e.g., show an error message to the user
+    }
+  }
+
   return (
     <main className={styles.main}>
       <div className={styles.description}>
@@ -40,9 +63,10 @@ export default function Home() {
 
       <div className={styles.center}>
         <a
-          href=""
+          href="#"
           className={styles.card}
           target="_blank"
+          onClick={createRoom}
           rel="noopener noreferrer"
         >
           <h2>
