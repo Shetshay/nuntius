@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-'use client'
-import Image from "next/image";
-import styles from "@/css/page.module.css";
-import { useRouter } from 'next/navigation';  
-
-export default function Home() {
-  const router = useRouter();
-=======
 "use client";
 import Image from "next/image";
 import styles from "@/css/page.module.css";
@@ -20,29 +11,17 @@ export default function Home() {
   const toggleDescription = () => {
     setShowDescription(!showDescription); // Toggle the visibility of the description
   };
->>>>>>> 40f8cd2 (update buttons)
 
   async function createRoom() {
     try {
       const response = await fetch("/api/create-chat", {
         method: "POST",
       });
-<<<<<<< HEAD
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const data = await response.json();
-
-      router.push(`/chat-room/${data.roomId}`);
-=======
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
       router.push(`/chat-room/${data.roomId}`); // Navigate to the chat room
->>>>>>> 40f8cd2 (update buttons)
     } catch (error) {
       console.error("Failed to create chat room:", error);
       // Handle errors e.g., show an error message to the user
@@ -58,11 +37,7 @@ export default function Home() {
         </p>
         <div>
           <a
-<<<<<<< HEAD
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-=======
             href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
->>>>>>> 40f8cd2 (update buttons)
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -93,12 +68,7 @@ export default function Home() {
         <a
           href="#"
           className={styles.card}
-<<<<<<< HEAD
-          target="_blank"
-          onClick={createRoom}
-=======
           onClick={createRoom} // Removed target="_blank" as it's unnecessary for this interaction
->>>>>>> 40f8cd2 (update buttons)
           rel="noopener noreferrer"
         >
           <h2>
@@ -107,19 +77,6 @@ export default function Home() {
           <p>Host a session and create a join key.</p>
         </a>
 
-<<<<<<< HEAD
-        <a
-          href=""
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Join Session<span>-&gt;</span>
-          </h2>
-          <p>Enter a session key to join.</p>
-        </a>
-=======
         <button onClick={toggleDescription} className={styles.card}>
           <h2>
             Join Session<span> &rarr;</span>
@@ -133,7 +90,6 @@ export default function Home() {
             </div>
           )}
         </button>
->>>>>>> 40f8cd2 (update buttons)
       </div>
     </main>
   );
