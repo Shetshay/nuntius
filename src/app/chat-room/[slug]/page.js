@@ -1,20 +1,41 @@
+// src/app/chat-room/[slug]/page.js
 import styles from "@/css/page.module.css";
 import MongooseClient from "../../../../lib/mongo";
 
-export default async function ChatRoom({ params }) {
-  let client = new MongooseClient(process.env.MONGODB_URI);
-  await client.connect();
-
-  const {messages} = await client.fetchMessages(params.slug);
+// Component definition
+export default function ChatRoom({ data }) {
+  const { messages = [], slug = "default" } = data || {};
 
   return (
     <main className={styles.main}>
-      <h1>Chat Room: {params.slug}</h1>
+      <h1>Chat Room: {slug}</h1>
       <ul>
         {messages.map((msg, index) => (
-          <li key={index}>{msg.message}</li> // Assuming 'message' is a property of the fetched messages
+          <li key={index}>{msg.message}</li>
         ))}
       </ul>
     </main>
   );
+}
+
+// Loader function to fetch data
+export async function loader({ params }) {
+  const client = new MongooseClient(process.env.MONGODB_URI);
+
+  try {
+    await client.connect();
+    const messages = await client.fetchMessages(params.slug);
+    return {
+      data: { messages, slug: params.slug },
+    };
+  } catch (error) {
+    console.error("Failed to fetch messages:", error);
+    return {
+      data: {
+        messages: [],
+        slug: params.slug,
+        error: "Failed to load messages.",
+      },
+    };
+  }
 }
