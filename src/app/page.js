@@ -67,8 +67,9 @@ export default function Home() {
       <div className={styles.center}>
         <a
           href="#"
+          target="_blank"
           className={styles.card}
-          onClick={createRoom} // Removed target="_blank" as it's unnecessary for this interaction
+          onClick={createRoom}
           rel="noopener noreferrer"
         >
           <h2>
