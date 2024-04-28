@@ -1,4 +1,3 @@
-// pages/api/create-chat.js
 import MongooseClient from "../../lib/mongo"; // Correct import path assumed
 
 export default async function handler(req, res) {
