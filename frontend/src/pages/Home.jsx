@@ -1,7 +1,7 @@
 import NuntiusLogo from "../images/nuntius_logo.png";
-import {useState, useRef} from "react";
+// import {useState, useRef} from "react";
 import {Link} from "react-router-dom";
-import axios from "axios";
+// import axios from "axios";
 
 export default function Home({newSession, setNewSession}) {
 
