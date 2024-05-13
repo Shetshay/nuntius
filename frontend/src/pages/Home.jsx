@@ -24,7 +24,7 @@ export default function Home({newSession, setNewSession}) {
 
     const establishSession = async () => {
         try {
-            const response = await axios.post("http://localhost:4000/api/create-session", {
+            const response = await axios.post("https://www.nuntius.cc/api/create-session", {
                 nickname: formData.nickname.current.value,
                 sessionName: formData.sessionName.current.value
             });
@@ -71,7 +71,7 @@ export default function Home({newSession, setNewSession}) {
     async function enterSession() {
         try {
             console.log("Home: enter session");
-            const response = await axios.post("http://localhost:4000/api/join-session", {
+            const response = await axios.post("https://www.nuntius.cc/api/join-session", {
                 sessionID: formData.joinSessionID.current.value,
                 nickname: formData.joinNickname.current.value
             });
@@ -102,7 +102,7 @@ export default function Home({newSession, setNewSession}) {
 
         console.log(formData.deleteSessionID.current.value);
 
-        const response = await axios.post("http://localhost:4000/api/delete-session" , {
+        const response = await axios.post("https://www.nuntius.cc/api/delete-session" , {
             sessionID: formData.deleteSessionID.current.value
 
         });
